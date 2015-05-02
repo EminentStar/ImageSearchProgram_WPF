@@ -1,0 +1,33 @@
+﻿CREATE TABLE Logs(searchName nvarchar(100), searchTime nvarchar(50));
+
+*code
+{
+    string dbName = "Data Source = database.sdf;";    
+
+    SqlCeConnection con = new SqlCeConnection(dbName);
+    con.Open();
+
+    try
+    {
+        SqlCeCommand cmd = new SqlCeCommand();
+        cmd.Connection = con;
+
+        SqlCeTransaction tran = con.BeginTransaction();
+        cmd.Transaction = tran;
+
+        cmd.CommandText = "CREATE TABLE Logs(searchName nvarchar(100), searchTime nvarchar(50));";
+
+        cmd.ExecuteNonQuery();
+
+        tran.Commit();
+
+    }
+    catch(SystemException ex)
+    {
+        System.Windows.MessageBox.Show(ex.ToString());
+    }
+    finally
+    {
+        con.Close();
+    }
+}

@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="ImageSearchProgram.SearchControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="500">
+    <Grid HorizontalAlignment="Center" Margin="10,0" Width="480">
+        <Button x:Name="btn_back" Content="Back" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="44"/>
+        <TextBox x:Name="tb" HorizontalAlignment="Left" Height="19" Margin="73,41,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="237" />
+        <Button x:Name="btn_search" Content="검색" HorizontalAlignment="Left" Height="50" Margin="425,19,0,0" VerticalAlignment="Top" Width="45"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="73,19,0,0" TextWrapping="Wrap" Text="검색할 그림 이름" VerticalAlignment="Top" RenderTransformOrigin="0.569,4.5" Height="17" Width="324"/>
+        <ComboBox x:Name="cb" HorizontalAlignment="Left" Margin="352,41,0,0" SelectedIndex="0" VerticalAlignment="Top" Width="55" Height="19"  >
+            <ComboBoxItem x:Name="c1" Content="10" HorizontalAlignment="Left" Width="94"/>
+            <ComboBoxItem x:Name="c2" Content="20" HorizontalAlignment="Left" Width="94"/>
+            <ComboBoxItem x:Name="c3" Content="30" HorizontalAlignment="Left" Width="94"/>
+        </ComboBox>
+        <ScrollViewer CanContentScroll="True" MinHeight="250" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Height="Auto" Margin="10,81,0,0" VerticalAlignment="Top" Width="460">
+            <WrapPanel x:Name="wp" MinWidth="450" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="Auto" Width="450" />
+        </ScrollViewer>
+
+
+    </Grid>
+</UserControl>
