@@ -8,7 +8,7 @@
     <Grid HorizontalAlignment="Center" Margin="10,0" Width="480">
         <Button x:Name="btn_result_back" Content="Back" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="44"/>
         <Button x:Name="btn_remove" Content="기록삭제" HorizontalAlignment="Left" Height="50" Margin="402,10,0,0" VerticalAlignment="Top" Width="68" />
-        <TextBlock HorizontalAlignment="Left" Margin="193,27,0,0" TextWrapping="Wrap" Text="검색할 그림 이름" VerticalAlignment="Top" RenderTransformOrigin="0.569,4.5" Height="18" Width="101"/>
+        <TextBlock HorizontalAlignment="Left" Margin="193,27,0,0" TextWrapping="Wrap" Text="검색한 그림 이름" VerticalAlignment="Top" RenderTransformOrigin="0.569,4.5" Height="18" Width="101"/>
         <ScrollViewer CanContentScroll="True" MinHeight="250" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Height="Auto" Margin="10,81,0,0" VerticalAlignment="Top" Width="460">
             <WrapPanel x:Name="wp" MinWidth="450" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="Auto" Width="450" />
         </ScrollViewer>

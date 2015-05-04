@@ -40,105 +40,53 @@ namespace ImageSearchProgram
                 </Button.Template>
             </Button>
              */
+            AddImage(paramXmlNode);
+        }
 
-            //Button btn = new Button { 
-            //    Width = 150,
-            //    Height = 150,
-            //    Content = new Image
-            //    {
-            //        Source = new BitmapImage(new Uri(paramXmlNode.InnerXml)),
-            //        VerticalAlignment = VerticalAlignment.Center,
-            //        Stretch = Stretch.Fill
-            //    }
-            //};
-
-            //gridImg.Children.Add(btn);
-
-
-
-
-
-
-            ///////////////////
-
-
-
-            /////////////////////
-
-            //btn = new Button
-            //{
-            //    Content = new Image
-            //    {
-            //        Source = new BitmapImage(new Uri(paramXmlNode.InnerXml)),
-            //        VerticalAlignment = VerticalAlignment.Center,
-            //        Stretch = Stretch.Fill,
-            //        Name = "img",
-
-            //    }
-            //};
-
-            //btn.Click += btn_Click;
-
-            //gridImg.Children.Add(btn);
-
-            ///////////////////////////////////
-
+        public Image SetImage(string paramStr)
+        {
             Image image = new Image();
-            image.Width = 150;
-            image.Height = 150;
-
-
             BitmapImage logo = new BitmapImage();
             logo.BeginInit();
-            logo.UriSource = new Uri(paramXmlNode.InnerXml);
+            logo.UriSource = new Uri(paramStr);
             logo.EndInit();
+
             image.Source = logo;
+            return image;
+        }
+
+        public void AddImage(XmlNode paramXmlNode)
+        {
+            Image image = SetImage(paramXmlNode.InnerXml);
+
+            image.Width = 100;
+            image.Height = 100;
             image.MouseDown += new MouseButtonEventHandler(image_DoubleClick);
 
             gridImg.Children.Add(image);
-
         }
-
+                
         public void image_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-
-           //MyNewWindow window2 = new MyNewWindow();
-            
             Image paramimg = sender as Image;
-
             
             if (e.ChangedButton == MouseButton.Left && e.ClickCount == 2)
             {
                 MyNewWindow win2 = new MyNewWindow();
 
-                ImageBrush myBrush = new ImageBrush();
-                Image image = new Image();
-                image.Source = new BitmapImage(
-                    new Uri(
-                       paramimg.Source.ToString()));
-                myBrush.ImageSource = image.Source;
-                myBrush.Stretch = Stretch.None;
-                Grid grid = new Grid();
-                //grid.Background = myBrush;
+                Image image = SetImage(paramimg.Source.ToString());
+                image.Stretch = Stretch.Uniform;
 
-                win2.Content = grid;
-                //Image image = new Image();
-                
-                //BitmapImage logo = new BitmapImage();
-
-                //logo.BeginInit();
-                //logo.UriSource = new Uri(paramimg.Source.ToString());
-                //logo.EndInit();
-                //image.Source = logo;
-                //win2.myNewGrid.Children.Add(image);
+                win2.Topmost = true;
+                win2.Content = image;
                 
                 win2.Show();
-
-                //MessageBox.Show(paramimg.Source.ToString());
                 win2.Closing += win2_Closing;
+                // MSDN : https://msdn.microsoft.com/en-us/library/ms744952.aspx ex)A hosted Windows Forms control is drawn in a separate HWND, so it is always drawn on top of WPF elements.
             }
-                
         }
+
+        //public void 
 
         void win2_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

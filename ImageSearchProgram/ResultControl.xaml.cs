@@ -24,7 +24,6 @@ namespace ImageSearchProgram
     {
         JKAppExceptions err = JKAppExceptions.GetInstance();
        
-
         public ResultControl()
         {
             InitializeComponent();
@@ -40,10 +39,10 @@ namespace ImageSearchProgram
             {
                 txtblock = new TextBlock
                 {
-                    //Height="18" Width="338"
-                    Width = 338,
+                    Width = 450,
                     Height = 18,
-                    Text = err.BytesPadRight(pair.Key, 15, ' ') + pair.Value
+                    //Text = err.BytesPadRight(pair.Key, 30, ' ') + pair.Value
+                    Text = pair.Key.PadRight(20, ' ') + pair.Value
                 };
                 wp.Children.Add(txtblock);
             }

@@ -71,7 +71,6 @@ namespace ImageSearchProgram
                 cmd.ExecuteNonQuery();
                 tran.Commit();
                 
-
             }
             catch (SystemException ex)
             {

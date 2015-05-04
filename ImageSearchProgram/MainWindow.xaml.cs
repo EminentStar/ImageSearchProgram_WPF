@@ -34,7 +34,6 @@ namespace ImageSearchProgram
             mainControl.btn_image.Click += new RoutedEventHandler(btn_image_Click);
             mainControl.btn_recent.Click += btn_recent_Click;
 
-
             // Binding Handlers of searchControl
             searchControl.btn_back.Click += btn_back_Click;
             searchControl.btn_search.Click += btn_search_Click;
@@ -46,10 +45,10 @@ namespace ImageSearchProgram
             // Binding Handlers of resultControl
             resultControl.btn_result_back.Click += btn_result_back_Click;
             resultControl.btn_remove.Click += btn_remove_Click;
-
         }
 
-        //*************MainControl's Handlers
+
+        //****************************************************MainControl's Handlers****************************************************
         void btn_image_Click(object sender, RoutedEventArgs e)
         {
             MainGrid.Children.Clear();
@@ -61,7 +60,7 @@ namespace ImageSearchProgram
             MainGrid.Children.Add(resultControl);
             resultControl.ShowResultOfSearch();
         }
-        //************SearchControl's Handlers
+        //***************************************************SearchControl's Handlers****************************************************
         void btn_back_Click(object sender, RoutedEventArgs e)
         {
             searchControl.wp.Children.Clear();
@@ -72,16 +71,22 @@ namespace ImageSearchProgram
         void btn_search_Click(object sender, RoutedEventArgs e)
         {
             searchControl.wp.Children.Clear();
-            //int imgCnt = Convert.ToInt32(searchControl.cb.Text);
+
+            searchControl.InsertDB(searchControl.tb.Text, DateTime.Now);
+
+            AddListOfImagesWithThumbnail(searchControl.tb.Text, searchControl.cb.Text);
+        }
+
+        void AddListOfImagesWithThumbnail(string paramText, string paramCnt)
+        {
             XmlDocument doc = new XmlDocument();
             ImageItem item = null;
 
-            searchControl.InsertDB(searchControl.tb.Text, DateTime.Now);
-            doc.Load("http://openapi.naver.com/search?key=4432e614518baff96f7dcc60d0fe5c88&query=" + searchControl.tb.Text + "&target=image&start=1&display=" + searchControl.cb.Text );
-            
+            doc.Load("http://openapi.naver.com/search?key=4432e614518baff96f7dcc60d0fe5c88&query=" + paramText + "&target=image&start=1&display=" + paramCnt);
+
             XmlNodeList imgList = doc.GetElementsByTagName("thumbnail");
 
-            foreach(XmlNode element in imgList)
+            foreach (XmlNode element in imgList)
             {
                 item = new ImageItem(element);
 
@@ -109,20 +114,19 @@ namespace ImageSearchProgram
         {
         }
 
-        //************ResultControl's Handlers
+        //****************************************************ResultControl's Handlers****************************************************
         void btn_result_back_Click(object sender, RoutedEventArgs e)
         {
             resultControl.wp.Children.Clear();
             MainGrid.Children.Clear();
-            MainGrid.Children.Add(mainControl); 
+            MainGrid.Children.Add(mainControl);
 
         }
         void btn_remove_Click(object sender, RoutedEventArgs e)
         {
             resultControl.wp.Children.Clear();
             resultControl.DeleteDB();
-
         }
-        
+
     }
 }
